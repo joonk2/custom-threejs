@@ -1,0 +1,56 @@
+npm i http-server -g
+npx http-server -p 8080
+
+ctr shift r 강력한 새로고침
+코드도 바꾸고 서버도 로드했는데
+브라우저 안바뀔떄
+
+1.   만약에 나는 npm으로 할 수가 없다
+생 html 파일이다 하면 이거 복붙
+하면 npm으로 설치한 것처럼 사용가능
+
+{
+            "imports": {
+              "three": "https://unpkg.com/three@0.141.0/build...",
+              "GLTFLoader" : "https://unpkg.com/three@0.141.0/examp..."
+            }
+        }
+
+
+
+
+2. 이제 </script> 아래에 작성하자
+
+
+*참고. 브라우저에 물체장면을 보여줌
+        let renderer = new THREE.WebGLRenderer()
+        renderer.render(scene)
+
+
+3. 어디다가보여줄지 짜기위해 저 두줄 사이에
+
+canvas : document.querySelector('#canvas')
+        });
+
+이거 작성
+
+
+4. 아까 다운받은 토스트기계를 보여주기위해
+
+canvas }); 밑에 추가
+
+let loader = new GLTFLoaderoader();
+        loader.load('toaster/scene.gltf');
+
+
+5. 이거 로드하는데 시간이 살짝 걸림
+그래서 로딩 끝난 후 특정 코드를 실행
+하고싶다? ex) 바로 랜더링 해주세요
+
+.gltf' 뒤에, 콤마하고
+
+function(gltf){
+            scene.add(gltf.scene);
+            renderer.render(scene);
+            
+        });
